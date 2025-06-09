@@ -1,11 +1,11 @@
 project:
   name: Sample_fullstack_project
-  frontend-language: react
-  backend-language: python
+  language: fullstack
+  framework: react-python
   repo: https://github.com/RAAHUL-tech/Sample_fullstack_project
 
 build:
-  tool: docker   # options: docker, maven, npm, poetry, custom 
+  tool: docker
   context: .
   dockerfile: Dockerfile
 
