@@ -1,7 +1,11 @@
 from flask import Flask, render_template_string
 from markupsafe import escape
+import logging
 
 app = Flask(__name__)
+
+# Configure logging
+logging.basicConfig(level=logging.ERROR, filename='app_errors.log')
 
 @app.route("/")
 def hello_world():
@@ -22,7 +26,8 @@ def page_not_found(error):
 def internal_error(error):
     return render_template_string("<h1>500 - Internal Server Error</h1>"), 500
 
-# Optional: Catch-all for uncaught exceptions
+# Catch-all for unhandled exceptions (with logging only)
 @app.errorhandler(Exception)
 def unhandled_exception(error):
-    return render_template_string(f"<h1>Unexpected Error:</h1><p>{escape(str(error))}</p>"), 500
+    app.logger.error("Unhandled Exception: %s", error, exc_info=True)
+    return render_template_string("<h1>Something went wrong.</h1><p>Please try again later.</p>"), 500
