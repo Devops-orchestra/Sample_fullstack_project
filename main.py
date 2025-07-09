@@ -1,4 +1,5 @@
 from flask import Flask
+from markupsafe import escape  # Import escape function to prevent XSS
 
 app = Flask(__name__)
 
