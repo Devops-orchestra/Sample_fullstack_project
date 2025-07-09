@@ -1,17 +1,21 @@
 import logging
+import os
 from flask import Flask, render_template_string, request
 from markupsafe import escape
 
 app = Flask(__name__)
 
+# Set a secure secret key (required for session security)
+app.secret_key = os.environ.get("FLASK_SECRET_KEY", "your-default-insecure-key")  # Replace in production
+
 # Configure logging
 logging.basicConfig(
-    level=logging.DEBUG,  # Change to INFO or WARNING in production
+    level=logging.DEBUG,
     format="%(asctime)s - %(levelname)s - %(message)s",
     handlers=[
-        logging.FileHandler("app.log"),      # Logs all levels to app.log
-        logging.FileHandler("errors.log"),   # Only errors and above
-        logging.StreamHandler()              # Also logs to console
+        logging.FileHandler("app.log"),
+        logging.FileHandler("errors.log"),
+        logging.StreamHandler()
     ]
 )
 
