@@ -12,6 +12,7 @@ build:
 testing:
   enabled: true
   framework: pytest
+  command: pytest autogen_tests.py
 
 deployment:
   type: cloud
