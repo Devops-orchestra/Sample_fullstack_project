@@ -12,7 +12,6 @@ build:
 testing:
   enabled: true
   framework: pytest
-  command: pytest tests/
 
 deployment:
   type: cloud
